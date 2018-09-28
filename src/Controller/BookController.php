@@ -17,11 +17,23 @@ class BookController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/user/edit", name="edit_profil")
+     */
     public function editUserProfil() {}
 
+    /**
+     * @Route("/contact/add", name="add_contact")
+     */
     public function addContact() {}
 
+    /**
+     * @Route("/contact/edit/{id}", name="edit_contact")
+     */
     public function editContact() {}
 
+    /**
+     * @Route("/contact/delete", name="delete_contact")
+     */
     public function deleteContact() {}
 }

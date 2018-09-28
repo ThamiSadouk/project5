@@ -1,7 +1,61 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello {{ title }}!{% endblock %}
-
+{% block title %} {{ title }} {% endblock %}
 {% block body %}
-    <h1>Hello marsupilami !</h1>
+
+      <section class="infos mt-5">
+    <h2>Mon profil</h2>
+    <div class="row">
+      <div class="col-md-6 img">
+        <img src="{{ asset('/img/marsupilami.png') }}" width="200" height="200"  alt="profil marsupilami" class="img-rounded">
+      </div>
+      <div class="col-md-6 details">
+        <blockquote>
+          <h5>{{ user.username }}</h5>
+          <small><cite title="Source Title">{{ user.description }} 
+          <i class="icon-map-marker"></i></cite></small>
+        </blockquote>
+        <p>
+          {{ user.email}} <br>
+        </p>
+        <a class="btn btn-warning" href="#" role="button" >Modifier profil</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="addressbook mt-5">
+    <h2>Mon Carnet d'Adresses</h2>
+
+    <div class="row">
+      <table id="contacts" class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Prénom</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Téléphone</th>
+            <th scope="col">Email</th>
+            <th scope="col">Adresse</th>
+            <th scope="col">Date d'ajout</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for contact in contacts %}
+            <tr>
+              <td>{{ user.username }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.description }}</td>
+              <td>{{ user.createdAt | date('d/m/Y') }}</td>
+              <td>
+                <div class="d-flex justify content-center">
+                  <a class="btn btn-warning" href="#" role="button" >Modifier</a>
+                  <a class="btn btn-danger" href="#" role="button" >supprimer</a>
+                </div>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table> 
+    </div>
+  </section>
 {% endblock %}
