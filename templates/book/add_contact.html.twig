@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ title }} {% endblock %}
+{% block body %}
+
+  <section class="addressbook mt-5">
+    <h2>Trouvez un nouveau contact ! </h2>
+
+    <div class="row">
+      <table id="contacts" class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Email</th>
+            <th scope="col">description</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for contact in contacts %}
+            <tr>
+              <td>{{ contact.username }}</td>
+              <td>{{ contact.email }}</td>
+              <td>{{ contact.description }}</td>
+              <td>
+                <div class="d-flex justify content-center">
+                  <a class="btn btn-warning" href="#" role="button" >Ajouter</a>
+                </div>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table> 
+    </div>
+  </section>
+{% endblock %}
