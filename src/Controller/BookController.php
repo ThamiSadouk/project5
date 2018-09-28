@@ -20,7 +20,7 @@ class BookController extends AbstractController
 
         return $this->render('book/index.html.twig', [
             'title' => 'Hello Marsupilami',
-            'contacts' => $contacts
+            'contacts' => $contacts, 
         ]);
     }
 
@@ -40,15 +40,9 @@ class BookController extends AbstractController
 
     /**
      * @Route("/contact/delete", name="delete_contact")
-     * la fonction delete contact doit supprimer le joint
+     * la fonction delete contact doit supprimer la jointure
      */
     public function deleteContact() 
-    {}
-
-    /**
-     * @Route("/user/edit", name="edit_profil")
-     */
-    public function editUserProfil() 
     {}
 
 }
