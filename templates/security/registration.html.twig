@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Hello !{% endblock %}
+
+{% block body %}
+
+    <h1>Veuillez vous inscrire ! </h1>
+
+
+    {{ form_start(form) }}
+
+    {{ form_row(form.username, {'label': 'Nom d\'utilisateur', 'attr': {'placeholder': 'Marsupilami'}}) }}
+    {{ form_row(form.email, {'label': 'Adresse email', 'attr': {'placeholder': 'marsu@gmail.com'}}) }}
+    {{ form_row(form.password, {'label': 'Mot de passe', 'attr': {'placeholder': 'Mot de passe !'}}) }}
+    {{ form_row(form.description, {'label': 'description', 'attr': {'placeholder': 'zfùlk zùflkj sfùi'}}) }}
+
+
+    <button type="submit" class="btn btn-success">Inscription</button>
+
+    {{ form_end(form) }}
+
+{% endblock %}
