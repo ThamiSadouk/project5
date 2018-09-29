@@ -62,7 +62,7 @@ class User implements UserInterface
     public function __construct()
     {
         $this->myContacts = new ArrayCollection();
-        $this->contactsWithMy = new ArrayCollection();
+        $this->contactsWithMe = new ArrayCollection();
     }
 
     public function getId(): ?int

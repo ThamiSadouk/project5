@@ -62,8 +62,6 @@ class BookController extends AbstractController
 
         return $this->redirectToRoute('member_directory'); 
     }
-
-
     
     // /**
     //  * @Route("/contact/remove/{id}", name="delete_contact")
