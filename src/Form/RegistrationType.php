@@ -17,6 +17,7 @@ class RegistrationType extends AbstractType
             ->add('email')
             ->add('password', PasswordType::class)
             ->add('description')
+            //->add('myContacts', CollectionType::class)
         ;
     }
 

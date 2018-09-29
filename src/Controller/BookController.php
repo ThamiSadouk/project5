@@ -15,8 +15,13 @@ class BookController extends AbstractController
      */
     public function index(UserRepository $repo)
     {
+        // On sélection le User logged in ?????
+        $user = $this->getUser(); 
+
         // cherche la liste des contacts d'un user dans UserRepository
-        $contacts = $repo->findAll(); 
+        $contacts = $user->getMyContacts(); 
+                
+        //$Mycontacts = $repo->findAll(); 
 
         return $this->render('book/index.html.twig', [
             'title' => 'Hello Marsupilami',
@@ -44,5 +49,4 @@ class BookController extends AbstractController
      */
     public function deleteContact() 
     {}
-
 }

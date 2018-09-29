@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -41,6 +43,27 @@ class User implements UserInterface
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="myContacts")
+     */
+    private $contactsWithMe;
+
+    /**
+     * Many Users have many Users.
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="contactsWithMe")
+     * @ORM\JoinTable(name="contacts",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="contact_user_id", referencedColumnName="id")}
+     *      )
+     */
+    private $myContacts;
+
+    public function __construct()
+    {
+        $this->myContacts = new ArrayCollection();
+        $this->contactsWithMy = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -114,5 +137,33 @@ class User implements UserInterface
     public function getRoles() 
     {
         return ['ROLE_USER'];
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getMyContacts(): Collection
+    {
+        return $this->myContacts;
+    }
+
+    public function addMyContact(User $contact): self
+    {
+        if (!$this->myContacts->contains($contact)) {
+            $this->myContacts[] = $contact;
+            $contact->addMyContact($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMyContact(User $contact): self
+    {
+        if ($this->myContacts->contains($contact)) {
+            $this->myContacts->removeElement($contact);
+            $contact->removeContact($this);
+        }
+
+        return $this;
     }
 }
